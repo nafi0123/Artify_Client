@@ -11,7 +11,9 @@ const Root = () => {
       <header className="">
         <Navbar></Navbar>
       </header>
-      <main className="w-11/12 mx-auto py-5">
+
+      {/* className="w-11/12 mx-auto py-5" */}
+      <main >
         {state == "loading" ? <Loading></Loading> : <Outlet></Outlet>}
       
       </main>
