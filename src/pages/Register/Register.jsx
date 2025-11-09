@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router';
-import useAuth from '../../hooks/useAuth';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router";
+import useAuth from "../../hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const Register = () => {
-    const { createUser, setUser, updateUser } = useAuth();
-  const [nameError, setNameError] = useState("");
-  const [error, setError] = useState("");
+  const { createUser, setUser, updateUser } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -14,20 +13,30 @@ const Register = () => {
     e.preventDefault();
 
     const form = e.target;
-    const name = form.name.value;
-    const photo = form.photo.value;
-    const email = form.email.value;
+    const name = form.name.value.trim();
+    const photo = form.photo.value.trim();
+    const email = form.email.value.trim();
     const password = form.password.value;
 
-    // const re = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
-    // if (!re.test(password)) {
-    //   setError(
+  
+    if (!name) {
+      toast.error("Name is required");
+      return;
+    }
+    if (!photo) {
+      toast.error("Photo URL is required");
+      return;
+    }
+    if (!email.includes("@")) {
+      toast.error("Invalid email address");
+      return;
+    }
+    // const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+    // if (!passwordPattern.test(password)) {
+    //   toast.error(
     //     "Password must contain at least one uppercase, one lowercase letter, and be at least 6 characters long."
     //   );
-     
     //   return;
-    // } else {
-    //   setError("");
     // }
 
     createUser(email, password)
@@ -36,21 +45,23 @@ const Register = () => {
         updateUser({ displayName: name, photoURL: photo })
           .then(() => {
             setUser({ ...user, displayName: name, photoURL: photo });
-            
+            toast.success("Registration successful!");
             navigate("/");
           })
-          .catch(() => {
+          .catch((err) => {
             setUser(user);
+            toast.error("Profile update failed");
+            console.error(err);
           });
       })
       .catch((err) => {
-        setError(err.message || "Registration failed");
-       
+        toast.error(err.message || "Registration failed");
+        console.error(err);
       });
   };
-    return (
-          <div className="flex justify-center items-center min-h-screen ">
 
+  return (
+    <div className="flex justify-center items-center min-h-screen">
       <div className="card bg-white w-full max-w-sm shadow-2xl rounded-xl p-6">
         <h2 className="text-2xl font-semibold text-center text-[#137A63] mb-5">
           Register your account
@@ -67,9 +78,6 @@ const Register = () => {
               placeholder="Name"
               required
             />
-            {nameError && (
-              <p className="text-xs text-red-500 mt-1">{nameError}</p>
-            )}
           </div>
 
           {/* Photo URL */}
@@ -115,9 +123,6 @@ const Register = () => {
             </button>
           </div>
 
-          {/* Error */}
-          {error && <p className="text-red-500 text-xs text-center">{error}</p>}
-
           {/* Submit Button */}
           <button
             type="submit"
@@ -136,7 +141,7 @@ const Register = () => {
         </form>
       </div>
     </div>
-    );
+  );
 };
 
 export default Register;

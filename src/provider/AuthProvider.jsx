@@ -10,7 +10,9 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import app from "../firebase/Firebase.config";
+import app from "../firebase/firebase.config";
+
+
 
 export const AuthContext = createContext();
 
@@ -30,6 +32,7 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, updatedData);
   };
 
+  // 
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);

@@ -22,13 +22,13 @@ const Login = () => {
 
     signIn(email, password)
       .then((result) => {
-        toast.success("Login successful!"); // ✅ success toast
-        navigate(location.state?.from || "/");
+        toast.success("Login successful!"); 
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((err) => {
         console.error("Login error:", err);
         setError(err.code || err.message || "Login failed");
-        toast.error(err.code || err.message || "Login failed"); // ✅ error toast
+        toast.error(err.code || err.message || "Login failed"); 
       });
   };
 
@@ -38,12 +38,12 @@ const Login = () => {
 
     googleSignIn()
       .then((res) => {
-        toast.success("Google Sign-In successful!"); // ✅ success toast
-        // navigate(location.state?.from || "/");
+        toast.success("Google Sign-In successful!");
+       navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((err) => {
         setError(err.code || err.message || "Google Sign-In failed");
-        toast.error(err.code || err.message || "Google Sign-In failed"); // ✅ error toast
+        toast.error(err.code || err.message || "Google Sign-In failed"); 
       });
   };
 
@@ -90,7 +90,7 @@ const Login = () => {
             {/* Forgot Password */}
             <div className="flex justify-end mt-2 mb-2 ">
               <Link
-                to="/auth/forgot-password"
+                to="/forgot-password"
                 state={{ email }}
                 className="text-sm text-green-700 hover:underline cursor-pointer"
               >

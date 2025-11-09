@@ -1,5 +1,5 @@
 import React from "react";
-import { useSpring, config } from "@react-spring/web";
+import { useSpring, animated, config } from "@react-spring/web";
 
 const Loading = () => {
   const props = useSpring({
