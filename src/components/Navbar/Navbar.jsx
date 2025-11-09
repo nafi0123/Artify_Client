@@ -11,9 +11,10 @@ import {
 } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 
+
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  const [isOpen, setIsOpen] = useState(false); // sidebar toggle state
+  const [isOpen, setIsOpen] = useState(false); 
 
   const navItemStyle = ({ isActive }) =>
     `flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 ${
