@@ -7,3 +7,16 @@
 body {
   font-family: "Poppins", sans-serif;
 } */
+
+
+
+/* index.css */
+html.light body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+html.dark body {
+  background-color: #121212;
+  color: #ffffff;
+}

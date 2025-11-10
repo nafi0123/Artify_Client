@@ -60,7 +60,8 @@ const Home = () => {
 
         {/* Art Cards Grid */}
         <Fade cascade damping={0.2} triggerOnce>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {/* grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
             {data?.map((art) => (
               <SingleCard art={art} aos="fade-up"key={art._id}  />
             ))}
