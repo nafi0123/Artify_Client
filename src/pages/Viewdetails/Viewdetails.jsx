@@ -1,16 +1,32 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router";
+import axios from "axios";
 
 const Viewdetails = () => {
-  const art = useLoaderData(); 
+  const art = useLoaderData();
   const [likes, setLikes] = useState(art.likes || 0);
+  const [liked, setLiked] = useState(art.isLiked || false);
   const [favorite, setFavorite] = useState(false);
 
-  const handleLike = () => setLikes(prev => prev + 1);
-  const handleFavorite = () => setFavorite(prev => !prev);
+  const handleLike = async () => {
+    try {
+      const res = await axios.patch(
+        `http://localhost:5000/artwork/like/${art._id}`
+      );
+      //   console.log(res,5465444444);
+      if (res) {
+        setLikes(res.data.likes);
+        setLiked(res.data.isLiked);
+      }
+    } catch (err) {
+      console.error("Failed to update like:", err);
+    }
+  };
+
+  const handleFavorite = () => setFavorite((prev) => !prev);
 
   return (
-    <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 p-6 mt-6">
+    <div className="max-w-4xl mx-auto  rounded-2xl shadow-lg overflow-hidden border border-gray-100 p-6 mt-6">
       <div className="w-full h-80 sm:h-96 lg:h-[500px] overflow-hidden rounded-xl">
         <img
           src={art.imageUrl}
@@ -20,7 +36,9 @@ const Viewdetails = () => {
       </div>
 
       <div className="mt-6 space-y-4">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">{art.title}</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
+          {art.title}
+        </h1>
         <p className="text-gray-700 text-sm sm:text-base">{art.description}</p>
 
         {/* Artist Info */}
@@ -48,17 +66,22 @@ const Viewdetails = () => {
         <div className="flex flex-wrap gap-3 mt-6">
           <button
             onClick={handleLike}
-            className="flex-1 sm:flex-none bg-[#137A63] hover:bg-[#0f5d4c] text-white font-semibold py-2 px-4 rounded-full transition duration-300 shadow-md flex items-center justify-center gap-2"
-          >
-            ❤️ Like ({likes})
-          </button>
-          <button
-            onClick={handleFavorite}
             className={`flex-1 sm:flex-none ${
+              liked
+                ? "bg-red-500 hover:bg-red-600"
+                : "bg-[#137A63] hover:bg-[#0f5d4c]"
+            } text-white font-semibold py-2 px-4 rounded-full transition duration-300 shadow-md flex items-center justify-center gap-2`}
+          >
+            ❤️ {liked ? "Liked" : "Like"} ({likes})
+          </button>
+
+          <button
+            onClick={() => setFavorite((prev) => !prev)}
+            className={`flex-1 sm:flex-none font-semibold py-2 px-4 rounded-full transition duration-300 shadow-md flex items-center justify-center gap-2 ${
               favorite
-                ? "bg-yellow-500 hover:bg-yellow-600"
-                : "bg-gray-200 hover:bg-gray-300"
-            } font-semibold py-2 px-4 rounded-full transition duration-300 shadow-md`}
+                ? "bg-pink-500 text-white hover:bg-pink-600 shadow-lg"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+            }`}
           >
             {favorite ? "★ Favorited" : "☆ Add to Favorites"}
           </button>

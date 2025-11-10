@@ -7,7 +7,8 @@ import Loading from "../components/Loading/Loading";
 const Root = () => {
       const { state } = useNavigation;
   return (
-    <div className="min-h-screen bg-[#fdfaf6]">
+    // bg-[#fdfaf6]
+    <div className="min-h-screen bg-[#fdfaf6] dark:bg-black dark:text-white">
       <header className="">
         <Navbar></Navbar>
       </header>

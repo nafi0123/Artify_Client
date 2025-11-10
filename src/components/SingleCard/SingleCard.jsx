@@ -4,7 +4,7 @@ import { Link } from "react-router";
 const SingleCard = ({ art, aos }) => {
   return (
     <div
-      className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition duration-300 w-full sm:w-[300px] md:w-[320px] lg:w-[350px] mx-auto"
+      className="bg-white dark:bg-black rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition duration-300 w-full sm:w-[300px] md:w-[320px] lg:w-[350px] mx-auto"
       data-aos={aos}
     >
       {/* Artwork Image */}

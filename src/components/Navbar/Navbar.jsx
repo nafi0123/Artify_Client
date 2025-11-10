@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router";
 import Logo from "../../assets/logo1.jpg";
 import {
@@ -15,13 +15,23 @@ const Navbar = () => {
   const { user, logOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log(user,2222)
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
 
   const navItemStyle = ({ isActive }) =>
     `flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 ${
       isActive
-        ? "text-[#137A63] bg-[#E6F4F1] shadow-sm"
-        : "text-slate-700 hover:text-[#137A63] hover:bg-slate-100"
+        ? "text-[#137A63] bg-[#E6F4F1] shadow-sm dark:text-[#137A63] dark:bg-[#0f3f35]"
+        : "text-slate-700 hover:text-[#137A63] hover:bg-slate-100 dark:text-white dark:hover:text-[#137A63] dark:hover:bg-slate-800"
     }`;
 
   const links = (
@@ -96,44 +106,12 @@ const Navbar = () => {
         {/* Right side: Theme + Login/Profile */}
         <div className="flex items-center gap-4">
           {/* 🌙 Theme Toggle */}
-          <label className="flex cursor-pointer items-center gap-2">
-            {/* ☀️ Sun */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="12" cy="12" r="5" />
-              <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
-            </svg>
-
-            <input
-              type="checkbox"
-              value="synthwave"
-              className="toggle theme-controller"
-            />
-
-            {/* 🌙 Moon */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-          </label>
+          <input
+            onChange={(e) => handleTheme(e.target.checked)}
+            type="checkbox"
+            defaultChecked={localStorage.getItem("theme") === "dark"}
+            className="toggle"
+          />
 
           {/* 👤 User Icon / Login */}
           {!user ? (
@@ -157,13 +135,11 @@ const Navbar = () => {
           ) : (
             <div className="relative group">
               <img
-                src={
-                  user.photoURL
-                }
+                src={user.photoURL}
                 alt={user?.displayName || "User"}
                 className="w-10 h-10 rounded-full cursor-pointer border border-gray-300 object-cover"
               />
-              
+
               <div className="absolute right-0 mt-2 w-44 bg-white shadow-lg rounded-lg p-3 opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-200">
                 <p className="font-medium text-sm mb-2 truncate">
                   {user.displayName}
@@ -202,8 +178,7 @@ const Navbar = () => {
 
         <div className="flex-1 overflow-y-auto p-4">{links}</div>
 
-        <div className="p-4 border-t flex flex-col items-center gap-3">       
-
+        <div className="p-4 border-t flex flex-col items-center gap-3">
           {!user ? (
             <>
               <Link

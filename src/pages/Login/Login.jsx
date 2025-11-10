@@ -22,13 +22,13 @@ const Login = () => {
 
     signIn(email, password)
       .then((result) => {
-        toast.success("Login successful!"); 
+        toast.success("Login successful!");
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((err) => {
         console.error("Login error:", err);
         setError(err.code || err.message || "Login failed");
-        toast.error(err.code || err.message || "Login failed"); 
+        toast.error(err.code || err.message || "Login failed");
       });
   };
 
@@ -39,11 +39,11 @@ const Login = () => {
     googleSignIn()
       .then((res) => {
         toast.success("Google Sign-In successful!");
-       navigate(`${location.state ? location.state : "/"}`);
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((err) => {
         setError(err.code || err.message || "Google Sign-In failed");
-        toast.error(err.code || err.message || "Google Sign-In failed"); 
+        toast.error(err.code || err.message || "Google Sign-In failed");
       });
   };
 
@@ -112,10 +112,12 @@ const Login = () => {
             {/* Google Sign-In */}
             <button
               type="button"
-              className="btn bg-white text-black border border-[#e5e5e5] flex items-center gap-2 hover:bg-gray-100 hover:text-black transition-all duration-300 mt-3 w-full justify-center"
               onClick={handleGoogleSignIn}
+              className="flex items-center justify-center w-full gap-2 px-4 py-2 rounded-lg border transition-all duration-300 font-medium
+             bg-white text-black border-gray-300 hover:bg-gray-100 hover:text-black
+             dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:text-white mt-3"
             >
-              <FaGoogle /> Login with Google
+              <FaGoogle className="text-red-500" /> Login with Google
             </button>
 
             {/* Register Link */}
