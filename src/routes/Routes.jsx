@@ -5,6 +5,7 @@ import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import ForgotPass from "../pages/ForgotPass/ForgotPass";
 import Viewdetails from "../pages/Viewdetails/Viewdetails";
+import Loading from "../components/Loading/Loading";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,8 +27,9 @@ const router = createBrowserRouter([
       {
         path: "/detail-card/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/artwork-details/${params.id}`),
+          fetch(`https://artify-api-amber.vercel.app/artwork-details/${params.id}`),
         Component: Viewdetails,
+        hydrateFallbackElement:<Loading></Loading>
       },
     ],
   },

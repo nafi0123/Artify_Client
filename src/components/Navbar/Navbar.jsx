@@ -158,7 +158,7 @@ const Navbar = () => {
 
       {/* 🔹 Sidebar (Mobile) */}
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform ${
+        className={`fixed top-0 left-0 h-full w-64 bg-base-100 dark:bg-[#0f0f0f] shadow-lg transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 z-50 lg:hidden flex flex-col`}
       >
