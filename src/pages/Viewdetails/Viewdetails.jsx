@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 import { useAxios } from "../../hooks/useAxios";
+import { Tooltip as ReactTooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 
 const Viewdetails = () => {
   const art = useLoaderData();
@@ -102,8 +104,13 @@ const Viewdetails = () => {
         {/* Buttons */}
         <div className="flex flex-wrap gap-3 mt-6">
           {/* ❤️ Like Button */}
+          {/* ❤️ Like Button */}
           <button
             onClick={handleLike}
+            data-tooltip-id="like-tooltip"
+            data-tooltip-content={`Click to ${
+              liked ? "unlike" : "like"
+            } this artwork`}
             className={`flex-1 sm:flex-none ${
               liked
                 ? "bg-red-500 hover:bg-red-600"
@@ -112,10 +119,15 @@ const Viewdetails = () => {
           >
             ❤️ {liked ? "Liked" : "Like"} ({likes})
           </button>
+          <ReactTooltip id="like-tooltip" place="top" effect="solid" />
 
           {/* ⭐ Favorite Button */}
           <button
             onClick={handleFavorite}
+            data-tooltip-id="fav-tooltip"
+            data-tooltip-content={
+              favorite ? "Remove from favorites" : "Add to favorites"
+            }
             className={`flex-1 sm:flex-none font-semibold py-2 px-4 rounded-full transition duration-300 shadow-md flex items-center justify-center gap-2 ${
               favorite
                 ? "bg-pink-500 text-white hover:bg-pink-600 shadow-lg"
@@ -124,6 +136,7 @@ const Viewdetails = () => {
           >
             {favorite ? "★ Favorited" : "☆ Add to Favorites"}
           </button>
+          <ReactTooltip id="fav-tooltip" place="top" effect="solid" />
         </div>
       </div>
     </div>
