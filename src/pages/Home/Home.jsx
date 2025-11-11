@@ -31,7 +31,7 @@ const Home = () => {
       once: false,
       offset: 120,
     });
-  }, []);
+  }, [axiosInstance]);
 
   if (loading) return <Loading />;
 

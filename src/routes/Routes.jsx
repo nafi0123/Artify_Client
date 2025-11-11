@@ -6,6 +6,7 @@ import Login from "../pages/Login/Login";
 import ForgotPass from "../pages/ForgotPass/ForgotPass";
 import Viewdetails from "../pages/Viewdetails/Viewdetails";
 import Loading from "../components/Loading/Loading";
+import MyFavorites from "../pages/MyFavorites/MyFavorites";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,9 +28,15 @@ const router = createBrowserRouter([
       {
         path: "/detail-card/:id",
         loader: ({ params }) =>
-          fetch(`https://artify-api-amber.vercel.app/artwork-details/${params.id}`),
+          fetch(
+            `https://artify-api-amber.vercel.app/artwork-details/${params.id}`
+          ),
         Component: Viewdetails,
-        hydrateFallbackElement:<Loading></Loading>
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+      {
+        path: "/favorites",
+        Component: MyFavorites,
       },
     ],
   },
