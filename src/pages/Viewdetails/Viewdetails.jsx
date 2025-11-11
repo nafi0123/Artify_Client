@@ -46,6 +46,7 @@ const Viewdetails = () => {
           artworkId: art._id,
           title: art.title,
           imageUrl: art.imageUrl,
+          createdAt:art.date
         });
       } else {
         await axiosPublic.delete(`favorites/${art._id}`);

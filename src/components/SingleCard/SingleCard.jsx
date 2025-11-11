@@ -7,7 +7,7 @@ const SingleCard = ({ art, aos }) => {
       className="bg-base-100  rounded-2xl shadow-md dark:shadow-none overflow-hidden 
       border border-gray-200 dark:border-gray-700
       hover:shadow-xl transition duration-300 
-      w-full sm:w-[300px] md:w-[320px] lg:w-[350px] mx-auto"
+      w-full sm:w-[300px] md:w-[320px] lg:w-[350px] mx-auto hover:bg-[#e6f4f1] dark:hover:bg-[#113832]"
       data-aos={aos}
     >
       {/* Artwork Image */}
