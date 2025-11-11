@@ -8,6 +8,7 @@ const MyGallery = () => {
   const publicAxios = useAxios();
   const { user } = useAuth();
 
+  // http://localhost:5000/artwork?email=nafi.cse0123@gmail.com
 
   useEffect(() => {
     publicAxios
@@ -39,8 +40,7 @@ const MyGallery = () => {
   };
 
   const handleEdit=(id)=>{
-    publicAxios.patch
-
+    
   }
 
   return <div></div>;
