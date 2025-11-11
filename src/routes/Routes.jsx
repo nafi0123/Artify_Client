@@ -7,6 +7,8 @@ import ForgotPass from "../pages/ForgotPass/ForgotPass";
 import Viewdetails from "../pages/Viewdetails/Viewdetails";
 import Loading from "../components/Loading/Loading";
 import MyFavorites from "../pages/MyFavorites/MyFavorites";
+import AddArtwork from "../pages/AddArtwork/AddArtwork";
+import MyGallery from "../pages/MyGallery/MyGallery";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: "/favorites",
         Component: MyFavorites,
+      },
+      {
+        path: "/add-artwork",
+        Component: AddArtwork,
+      },
+      {
+        path: "/my-gallery",
+        Component: MyGallery,
       },
     ],
   },

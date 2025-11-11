@@ -48,9 +48,7 @@ const MyFavorites = () => {
         <h1 className="text-4xl md:text-5xl font-extrabold text-[#137A63] mb-2">
           My Favorites Artworks
         </h1>
-        <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl">
-          All artworks you have uploaded
-        </p>
+    
       </div>
 
       {/* Table */}
