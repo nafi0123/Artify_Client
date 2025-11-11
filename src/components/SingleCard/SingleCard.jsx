@@ -4,7 +4,10 @@ import { Link } from "react-router";
 const SingleCard = ({ art, aos }) => {
   return (
     <div
-      className="bg-white dark:bg-black rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition duration-300 w-full sm:w-[300px] md:w-[320px] lg:w-[350px] mx-auto"
+      className="bg-base-100  rounded-2xl shadow-md dark:shadow-none overflow-hidden 
+      border border-gray-200 dark:border-gray-700
+      hover:shadow-xl transition duration-300 
+      w-full sm:w-[300px] md:w-[320px] lg:w-[350px] mx-auto"
       data-aos={aos}
     >
       {/* Artwork Image */}
@@ -22,18 +25,18 @@ const SingleCard = ({ art, aos }) => {
       {/* Artwork Content */}
       <div className="p-5 space-y-3">
         {/* Title */}
-        <h2 className="text-lg sm:text-xl font-bold text-gray-900">
+        <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100">
           {art.title}
         </h2>
 
         {/* Artist Info */}
-        <div className="text-gray-700 text-sm">
+        <div className="text-gray-700 dark:text-gray-300 text-sm">
           <p className="font-medium">{art.userName}</p>
-          <p className="text-gray-500 text-xs mt-1">{art.medium}</p>
+          <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">{art.medium}</p>
         </div>
 
         {/* Price */}
-        <div className="text-gray-800 font-semibold mt-1">
+        <div className="text-gray-800 dark:text-gray-200 font-semibold mt-1">
           Price: ${art.price}
         </div>
 

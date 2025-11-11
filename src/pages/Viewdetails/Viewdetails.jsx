@@ -25,7 +25,6 @@ const Viewdetails = () => {
     checkFavorite();
   }, [art._id, axiosPublic]);
 
- 
   const handleLike = async () => {
     try {
       const res = await axiosPublic.patch(`artwork/like/${art._id}`);
@@ -56,7 +55,7 @@ const Viewdetails = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto rounded-2xl shadow-lg overflow-hidden border border-gray-100 p-6 mt-6">
+    <div className="card bg-base-100 dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden p-6 mt-6 max-w-4xl mx-auto">
       {/* Artwork Image */}
       <div className="w-full h-80 sm:h-96 lg:h-[500px] overflow-hidden rounded-xl">
         <img

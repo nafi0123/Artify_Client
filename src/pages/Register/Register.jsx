@@ -1,36 +1,25 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Link, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const { createUser, setUser, updateUser } = useAuth();
-  const [showPassword, setShowPassword] = useState(false);
+  const { createUser, googleSignIn, updateUserProfile } = useAuth();
   const navigate = useNavigate();
+
+  const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleRegister = (e) => {
     e.preventDefault();
+    setError("");
 
     const form = e.target;
-    const name = form.name.value.trim();
-    const photo = form.photo.value.trim();
-    const email = form.email.value.trim();
+    const name = form.name.value;
+    const email = form.email.value;
     const password = form.password.value;
-
-  
-    if (!name) {
-      toast.error("Name is required");
-      return;
-    }
-    if (!photo) {
-      toast.error("Photo URL is required");
-      return;
-    }
-    if (!email.includes("@")) {
-      toast.error("Invalid email address");
-      return;
-    }
+    const photo = form.photo.value;
     // const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
     // if (!passwordPattern.test(password)) {
     //   toast.error(
@@ -40,104 +29,122 @@ const Register = () => {
     // }
 
     createUser(email, password)
-      .then((result) => {
-        const user = result.user;
-        updateUser({ displayName: name, photoURL: photo })
-          .then(() => {
-            setUser({ ...user, displayName: name, photoURL: photo });
-            toast.success("Registration successful!");
-            navigate("/");
-          })
-          .catch((err) => {
-            setUser(user);
-            toast.error("Profile update failed");
-            console.error(err);
-          });
+      .then(() => {
+        return updateUserProfile(name, photo);
+      })
+      .then(() => {
+        toast.success("Account created successfully!");
+        navigate("/");
       })
       .catch((err) => {
-        toast.error(err.message || "Registration failed");
-        console.error(err);
+        setError(err.code || err.message || "Registration failed");
+        toast.error(err.code || err.message || "Registration failed");
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    setError("");
+    if (!googleSignIn) return;
+
+    googleSignIn()
+      .then(() => {
+        toast.success("Google Sign-In successful!");
+        navigate("/");
+      })
+      .catch((err) => {
+        setError(err.code || err.message || "Google Sign-In failed");
+        toast.error(err.code || err.message || "Google Sign-In failed");
       });
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="card  w-full max-w-sm shadow-2xl rounded-xl p-6">
-        <h2 className="text-2xl font-semibold text-center text-[#137A63] mb-5">
-          Register your account
+    <div className="flex justify-center min-h-screen items-center">
+      <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-5">
+        <h2 className="font-semibold text-2xl text-center text-[#137A63] tracking-tight">
+          Create your account
         </h2>
 
-        <form className="space-y-4" onSubmit={handleRegister}>
-          {/* Name */}
-          <div className="flex flex-col">
-            <label className="label">Name</label>
+        <form className="card-body" onSubmit={handleRegister}>
+          <fieldset className="fieldset">
+            {/* Full Name */}
+            <label className="label">Full Name</label>
             <input
               name="name"
               type="text"
-              className="input input-bordered"
-              placeholder="Name"
+              className="input"
+              placeholder="Full Name"
               required
             />
-          </div>
 
-          {/* Photo URL */}
-          <div className="flex flex-col">
+            {/* Photo URL */}
             <label className="label">Photo URL</label>
             <input
               name="photo"
               type="text"
-              className="input input-bordered"
+              className="input"
               placeholder="Photo URL"
               required
             />
-          </div>
 
-          {/* Email */}
-          <div className="flex flex-col">
+            {/* Email */}
             <label className="label">Email</label>
             <input
               name="email"
               type="email"
-              className="input input-bordered"
+              className="input"
               placeholder="Email"
               required
             />
-          </div>
 
-          {/* Password */}
-          <div className="flex flex-col relative">
+            {/* Password */}
             <label className="label">Password</label>
-            <input
-              name="password"
-              type={showPassword ? "text" : "password"}
-              className="input input-bordered pr-10"
-              placeholder="Password"
-              required
-            />
+            <div className="relative">
+              <input
+                name="password"
+                type={showPassword ? "text" : "password"}
+                className="input pr-10"
+                placeholder="Password"
+                required
+              />
+              <button
+                type="button"
+                className="absolute right-5 top-5 -translate-y-1/2 text-gray-500"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash size={19} /> : <FaEye size={19} />}
+              </button>
+            </div>
+
+            {/* Error */}
+            {error && <p className="text-red-400 text-xs mb-2">{error}</p>}
+
+            {/* Register Button */}
+            <button
+              type="submit"
+              className="btn bg-[#137A63] hover:bg-[#0f5e4c] text-white mt-2 border-none shadow-md hover:shadow-lg transition-all duration-300 w-full"
+            >
+              Register
+            </button>
+
+            {/* Google Sign-In */}
             <button
               type="button"
-              className="absolute right-5 top-11 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-              onClick={() => setShowPassword((prev) => !prev)}
+              onClick={handleGoogleSignIn}
+              className="flex items-center justify-center w-full gap-2 px-4 py-2 rounded-lg border transition-all duration-300 font-medium
+             bg-white text-black border-gray-300 hover:bg-gray-100 hover:text-black
+             dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:text-white mt-3"
             >
-              {showPassword ? <FaEyeSlash size={19} /> : <FaEye size={19} />}
+              <FaGoogle className="text-red-500" /> Register with Google
             </button>
-          </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="btn bg-[#137A63] hover:bg-[#0f5e4c] text-white w-full mt-2 shadow-md transition-all duration-300"
-          >
-            Register
-          </button>
-
-          {/* Login Link */}
-          <p className="text-center text-sm mt-4">
-            Already have an account?{" "}
-            <Link className="text-[#137A63] font-semibold" to="/login">
-              Login
-            </Link>
-          </p>
+            {/* Login Link */}
+            <p className="font-semibold text-center pt-5">
+              Already have an account?{" "}
+              <Link className="text-secondary" to="/login">
+                Login
+              </Link>
+            </p>
+          </fieldset>
         </form>
       </div>
     </div>
