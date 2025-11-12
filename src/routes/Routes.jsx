@@ -10,6 +10,7 @@ import MyFavorites from "../pages/MyFavorites/MyFavorites";
 import AddArtwork from "../pages/AddArtwork/AddArtwork";
 import MyGallery from "../pages/MyGallery/MyGallery";
 import ExploreArtworks from "../pages/ExploreArtworks/ExploreArtworks";
+import PrivetProvider from "../provider/PrivetProvider";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,20 +35,39 @@ const router = createBrowserRouter([
           fetch(
             `https://artify-api-amber.vercel.app/artwork-details/${params.id}`
           ),
-        Component: Viewdetails,
+        element:(
+          <PrivetProvider>
+            <Viewdetails></Viewdetails>
+          </PrivetProvider>
+        ),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/favorites",
-        Component: MyFavorites,
+
+          element:(
+          <PrivetProvider>
+            <MyFavorites></MyFavorites>
+          </PrivetProvider>
+        )
+        // Component: MyFavorites,
       },
       {
         path: "/add-artwork",
-        Component: AddArtwork,
+        element:(
+          <PrivetProvider>
+            <AddArtwork></AddArtwork>
+          </PrivetProvider>
+        )
+        // Component: AddArtwork,
       },
       {
         path: "/my-gallery",
-        Component: MyGallery,
+        element:(
+          <PrivetProvider>
+           <MyGallery></MyGallery>
+          </PrivetProvider>
+        )
       },
       {
         path: "/explore-artworks",
