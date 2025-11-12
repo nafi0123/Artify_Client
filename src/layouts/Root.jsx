@@ -8,7 +8,8 @@ const Root = () => {
       const { state } = useNavigation;
   return (
     // bg-[#fdfaf6]
-    <div className="min-h-screen bg-[#fdfaf6] dark:bg-black dark:text-white">
+    // dark:bg-black dark:text-white bg-white
+    <div className="min-h-screen bg-[#fdfaf6]  dark:bg-gray-900 text-gray-900">
       <header className="">
         <Navbar></Navbar>
       </header>

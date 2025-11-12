@@ -6,6 +6,7 @@ import SingleCard from "../../components/SingleCard/SingleCard";
 import { Fade, Slide } from "react-awesome-reveal";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import ExtraSections from "../../components/ExtraSections/ExtraSections.jsx";
 
 
 
@@ -70,6 +71,8 @@ const Home = () => {
         </Fade>
 
       </div>
+
+      <ExtraSections></ExtraSections>
     </div>
   );
 };

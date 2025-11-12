@@ -51,7 +51,6 @@ const AddArtwork = () => {
       console.log("Artwork added:", res.data);
       toast.success("Artwork added successfully!");
 
-    
       setFormData((prev) => ({
         ...prev,
         imageUrl: "",
@@ -79,9 +78,13 @@ const AddArtwork = () => {
     <div className="max-w-3xl mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md mt-8">
       <Toaster position="top-center" reverseOrder={false} />
 
-      <h1 className="text-4xl md:text-5xl font-extrabold text-[#137A63] mb-6 text-center" >
-        Add New Artwork
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 text-center">
+        Add New <span className="text-[#137A63]">Artworks</span>
       </h1>
+      <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto text-center mb-10 dark:text-gray-300">
+        Share your creativity with the world! Fill in the details below to
+        showcase your artwork and inspire fellow art lovers.
+      </p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <input

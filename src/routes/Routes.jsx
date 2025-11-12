@@ -9,6 +9,7 @@ import Loading from "../components/Loading/Loading";
 import MyFavorites from "../pages/MyFavorites/MyFavorites";
 import AddArtwork from "../pages/AddArtwork/AddArtwork";
 import MyGallery from "../pages/MyGallery/MyGallery";
+import ExploreArtworks from "../pages/ExploreArtworks/ExploreArtworks";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "/my-gallery",
         Component: MyGallery,
+      },
+      {
+        path: "/explore-artworks",
+        Component: ExploreArtworks,
       },
     ],
   },

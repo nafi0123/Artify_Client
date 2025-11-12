@@ -39,7 +39,7 @@ const Navbar = () => {
         <FaHome /> Home
       </NavLink>
 
-      <NavLink to="/explore" className={navItemStyle}>
+      <NavLink to="/explore-artworks" className={navItemStyle}>
         <FaImages /> Explore Artworks
       </NavLink>
 

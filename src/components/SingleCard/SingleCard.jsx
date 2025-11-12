@@ -4,18 +4,22 @@ import { Link } from "react-router";
 const SingleCard = ({ art, aos }) => {
   return (
     <div
-      className="bg-base-100  rounded-2xl shadow-md dark:shadow-none overflow-hidden 
-      border border-gray-200 dark:border-gray-700
-      hover:shadow-xl transition duration-300 
-      w-full sm:w-[300px] md:w-[320px] lg:w-[350px] mx-auto hover:bg-[#e6f4f1] dark:hover:bg-[#113832]"
+      className="bg-base-100 rounded-2xl shadow-md overflow-hidden border border-gray-200 
+                 dark:border-none dark:bg-[#1b1f1d] 
+                 hover:shadow-2xl hover:-translate-y-1 hover:bg-[#e6f4f1] 
+                 dark:hover:bg-[#102923] dark:hover:opacity-95 
+                 transition-all duration-300 ease-in-out 
+                 w-full sm:w-[300px] md:w-[320px] lg:w-[350px] mx-auto
+                 flex flex-col justify-between"
       data-aos={aos}
     >
       {/* Artwork Image */}
-      <div className="relative">
+      <div className="relative overflow-hidden group">
         <img
           src={art.imageUrl}
           alt={art.title}
-          className="w-full h-56 sm:h-64 md:h-69 lg:h-72 object-cover"
+          className="w-full h-56 sm:h-64 md:h-69 lg:h-72 object-cover 
+                     transform group-hover:scale-110 transition-transform duration-500 ease-out"
         />
         <span className="absolute top-3 left-3 bg-[#137A63] text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
           {art.category}
@@ -23,24 +27,24 @@ const SingleCard = ({ art, aos }) => {
       </div>
 
       {/* Artwork Content */}
-      <div className="p-5 space-y-3">
-        {/* Title */}
-        <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100">
-          {art.title}
-        </h2>
+      <div className="p-5 flex flex-col flex-grow justify-between">
+        <div>
+          <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100">
+            {art.title}
+          </h2>
 
-        {/* Artist Info */}
-        <div className="text-gray-700 dark:text-gray-300 text-sm">
-          <p className="font-medium">{art.userName}</p>
-          <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">{art.medium}</p>
+          <div className="text-gray-700 dark:text-gray-300 text-sm mt-1">
+            <p className="font-medium">{art.userName}</p>
+            <p className="text-gray-500 dark:text-gray-400 text-xs">
+              {art.medium}
+            </p>
+          </div>
+
+          <div className="text-gray-800 dark:text-gray-200 font-semibold mt-2">
+            Price: ${art.price}
+          </div>
         </div>
 
-        {/* Price */}
-        <div className="text-gray-800 dark:text-gray-200 font-semibold mt-1">
-          Price: ${art.price}
-        </div>
-
-        {/* Button */}
         <Link to={`/detail-card/${art._id}`}>
           <button className="w-full mt-3 bg-[#137A63] hover:bg-[#0f5d4c] text-white font-semibold py-2.5 rounded-full transition duration-300 shadow-md hover:shadow-lg">
             View Details

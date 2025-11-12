@@ -13,7 +13,6 @@ const MyGallery = () => {
   const publicAxios = useAxios();
   const { user } = useAuth();
 
-
   useEffect(() => {
     if (!user?.email) return;
 
@@ -25,7 +24,6 @@ const MyGallery = () => {
       .finally(() => setLoading(false));
   }, [publicAxios, user]);
 
- 
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -52,13 +50,11 @@ const MyGallery = () => {
     });
   };
 
-
   const openEditModal = (art) => {
     setSelectedArt(art);
     document.getElementById("editModal").showModal();
   };
 
- 
   const handleEditSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -83,7 +79,7 @@ const MyGallery = () => {
           title: "Updated!",
           text: "Artwork updated successfully.",
         });
-    
+
         setData((prev) =>
           prev.map((item) =>
             item._id === selectedArt._id ? { ...item, ...updatedArt } : item
@@ -99,9 +95,13 @@ const MyGallery = () => {
 
       {/* ✅ Title */}
       <div className="mb-8 text-center">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-[#137A63] mb-2">
-          My Gallery
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3">
+          My <span className="text-[#137A63]">Gallery</span>
         </h1>
+        <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto text-center mb-6 dark:text-gray-300">
+          Browse and manage all your uploaded artworks in one place. Edit,
+          update, or delete your creations effortlessly.
+        </p>
       </div>
 
       {/* ✅ Table */}
@@ -283,7 +283,7 @@ const MyGallery = () => {
             <button
               type="button"
               onClick={() => document.getElementById("editModal").close()}
-              className="btn bg-gray-200 hover:bg-gray-300 text-gray-700 border-none"
+              className="btn  hover:bg-gray-300 text-gray-700 border-none"
             >
               Cancel
             </button>

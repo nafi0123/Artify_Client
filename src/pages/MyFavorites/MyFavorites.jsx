@@ -45,10 +45,13 @@ const MyFavorites = () => {
     <div className="pt-20 px-4 sm:px-6 lg:px-8 min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Title/Header */}
       <div className="mb-8 text-center">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-[#137A63] mb-2">
-          My Favorites Artworks
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3">
+          My Favorites <span className="text-[#137A63]">Artworks</span>
         </h1>
-    
+        <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto text-center mb-6 dark:text-gray-300">
+          Explore and revisit artworks you love. Keep track of your favorite
+          pieces and get inspired by top creations.
+        </p>
       </div>
 
       {/* Table */}

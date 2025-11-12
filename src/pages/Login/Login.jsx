@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router";
-import toast from "react-hot-toast"; // ✅ import toast
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [error, setError] = useState("");

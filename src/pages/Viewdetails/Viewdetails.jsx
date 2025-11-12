@@ -64,7 +64,7 @@ const Viewdetails = () => {
         <img
           src={art.imageUrl}
           alt={art.title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover  transform group-hover:scale-110 transition-transform duration-500 ease-out"
         />
       </div>
 
