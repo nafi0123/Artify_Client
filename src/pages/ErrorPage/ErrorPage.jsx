@@ -21,9 +21,9 @@ const ErrorPage = ({ status = 404, message = "Page Not Found" }) => {
   }, []);
 
   // Determine colors based on theme
-  const bgColor = theme === "dark" ? "#111827" : "#ffffff"; // dark or white
-  const textColor = theme === "dark" ? "#f9fafb" : "#111827"; // text color
-  const subTextColor = theme === "dark" ? "#9ca3af" : "#6b7280"; // subtitle color
+  const bgColor = theme === "dark" ? "#111827" : "#ffffff"; 
+  const textColor = theme === "dark" ? "#f9fafb" : "#111827"; 
+  const subTextColor = theme === "dark" ? "#9ca3af" : "#6b7280"; 
 
   return (
     <div

@@ -4,6 +4,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { Link } from "react-router";
 
 const Banner = () => {
   const slides = [
@@ -13,6 +14,7 @@ const Banner = () => {
       title: "Discover & Showcase Your Creativity",
       desc: "Upload your artworks, build your gallery, and share your imagination with the world.",
       button: "Explore Artworks",
+      link: "/explore-artworks",
     },
     {
       id: 2,
@@ -20,6 +22,7 @@ const Banner = () => {
       title: "Explore Inspiring Art from Artists Worldwide",
       desc: "Dive into a vibrant community of creators and explore breathtaking digital masterpieces.",
       button: "View Gallery",
+      link: "/my-gallery",
     },
     {
       id: 3,
@@ -27,6 +30,7 @@ const Banner = () => {
       title: "Connect, Appreciate & Collaborate",
       desc: "Like, comment, and collaborate with fellow art lovers. Let creativity bring us together.",
       button: "Join Now",
+      link: "/login",
     },
   ];
 
@@ -66,9 +70,14 @@ const Banner = () => {
                   <p className="text-sm sm:text-md md:text-lg mb-4 text-white leading-relaxed">
                     {slide.desc}
                   </p>
-                  <button className="bg-[#137A63] hover:bg-[#0f5d4c] text-white font-semibold px-6 py-3 rounded-full transition duration-300">
+
+                  {/* Linked button */}
+                  <Link
+                    to={slide.link}
+                    className="inline-block bg-[#137A63] hover:bg-[#0f5d4c] text-white font-semibold px-6 py-3 rounded-full transition duration-300"
+                  >
                     {slide.button}
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

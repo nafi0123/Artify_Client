@@ -5,12 +5,12 @@ import toast, { Toaster } from "react-hot-toast";
 
 const AddArtwork = () => {
   const axiosPublic = useAxios();
-  const { user } = useAuth(); // Firebase user info
+  const { user } = useAuth();
 
   const [formData, setFormData] = useState({
     imageUrl: "",
     title: "",
-    category: "",
+    category: "Painting",
     medium: "",
     description: "",
     dimensions: "",
@@ -27,6 +27,7 @@ const AddArtwork = () => {
     },
   });
 
+  // ✅ Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "totalArtworks") {
@@ -39,6 +40,7 @@ const AddArtwork = () => {
     }
   };
 
+  // ✅ Submit Handler
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -46,11 +48,12 @@ const AddArtwork = () => {
       console.log("Artwork added:", res.data);
       toast.success("Artwork added successfully!");
 
+      // Reset form
       setFormData((prev) => ({
         ...prev,
         imageUrl: "",
         title: "",
-        category: "",
+        category: "Painting",
         medium: "",
         description: "",
         dimensions: "",
@@ -97,15 +100,21 @@ const AddArtwork = () => {
           className="w-full p-2 border rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           required
         />
-        <input
-          type="text"
+
+        {/* ✅ Category Dropdown */}
+        <select
           name="category"
-          placeholder="Category"
           value={formData.category}
           onChange={handleChange}
           className="w-full p-2 border rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           required
-        />
+        >
+          <option value="Painting">Painting</option>
+          <option value="Photography">Photography</option>
+          <option value="Digital Art">Digital Art</option>
+          <option value="Others">Others</option>
+        </select>
+
         <input
           type="text"
           name="medium"
@@ -141,6 +150,7 @@ const AddArtwork = () => {
           className="w-full p-2 border rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           required
         />
+
         <select
           name="visibility"
           value={formData.visibility}

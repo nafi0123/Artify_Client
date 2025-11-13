@@ -6,11 +6,11 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import Loading from "../../components/Loading/Loading";
 
-const getSwalTheme = () => {
-  const isDark = document.documentElement.classList.contains("dark");
 
+const getSwalTheme = (theme) => {
+  const isDark = theme === "dark";
   return {
-    background: isDark ? "#111827 !important" : "#ffffff",
+    background: isDark ? "#1f2937" : "#ffffff",
     color: isDark ? "#e5e7eb" : "#111827",
     confirmButtonColor: "#137A63",
     cancelButtonColor: "#d33",
@@ -21,13 +21,27 @@ const MyGallery = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedArt, setSelectedArt] = useState(null);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const publicAxios = useAxios();
   const { user } = useAuth();
 
   useEffect(() => {
-    if (!user?.email) return;
+    const handleThemeChange = () => {
+      const savedTheme = localStorage.getItem("theme") || "light";
+      setTheme(savedTheme);
+    };
 
+    handleThemeChange();
+
+    window.addEventListener("storage", handleThemeChange);
+    return () => window.removeEventListener("storage", handleThemeChange);
+  }, []);
+
+ 
+  useEffect(() => {
+    if (!user?.email) return;
     setLoading(true);
+
     publicAxios
       .get(`/artwork?email=${user.email}`)
       .then((res) => setData(res.data))
@@ -37,7 +51,7 @@ const MyGallery = () => {
 
   // ✅ DELETE Handler
   const handleDelete = (id) => {
-    const theme = getSwalTheme();
+    const themeColors = getSwalTheme(theme);
 
     Swal.fire({
       title: "Are you sure?",
@@ -45,10 +59,10 @@ const MyGallery = () => {
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Yes, delete it!",
-      background: theme.background,
-      color: theme.color,
-      confirmButtonColor: theme.confirmButtonColor,
-      cancelButtonColor: theme.cancelButtonColor,
+      background: themeColors.background,
+      color: themeColors.color,
+      confirmButtonColor: themeColors.confirmButtonColor,
+      cancelButtonColor: themeColors.cancelButtonColor,
     }).then((result) => {
       if (result.isConfirmed) {
         publicAxios
@@ -59,9 +73,9 @@ const MyGallery = () => {
               title: "Deleted!",
               text: "Your artwork has been deleted.",
               icon: "success",
-              background: theme.background,
-              color: theme.color,
-              confirmButtonColor: theme.confirmButtonColor,
+              background: themeColors.background,
+              color: themeColors.color,
+              confirmButtonColor: themeColors.confirmButtonColor,
             });
           })
           .catch((err) => console.error("Delete failed:", err));
@@ -79,7 +93,7 @@ const MyGallery = () => {
   const handleEditSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const theme = getSwalTheme();
+    const themeColors = getSwalTheme(theme);
 
     const updatedArt = {
       imageUrl: form.imageUrl.value,
@@ -100,9 +114,9 @@ const MyGallery = () => {
           icon: "success",
           title: "Updated!",
           text: "Artwork updated successfully.",
-          background: theme.background,
-          color: theme.color,
-          confirmButtonColor: theme.confirmButtonColor,
+          background: themeColors.background,
+          color: themeColors.color,
+          confirmButtonColor: themeColors.confirmButtonColor,
         });
 
         setData((prev) =>
@@ -155,10 +169,7 @@ const MyGallery = () => {
           <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
             {loading ? (
               <tr>
-                <td
-                  colSpan="5"
-                  className="text-center py-6 text-gray-500 dark:text-gray-400 italic"
-                >
+                <td colSpan="5" className="text-center py-6">
                   <Loading />
                 </td>
               </tr>
@@ -216,7 +227,7 @@ const MyGallery = () => {
         </table>
       </div>
 
-      {/* ✅ Edit Modal */}
+      {/* ✅ Edit Modal (unchanged) */}
       <dialog id="editModal" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box bg-base-100 dark:bg-gray-900 shadow-2xl rounded-2xl py-6 px-6">
           <h3 className="font-bold text-2xl text-center text-[#137A63] mb-4">

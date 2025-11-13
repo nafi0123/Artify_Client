@@ -25,7 +25,7 @@ const ExtraSections = () => {
           Discover talented artists making waves this week. Their unique styles and passion bring life to every stroke of creativity.
         </p>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-3">
           {topArtists.map((artist, idx) => (
             <div
               key={idx}
