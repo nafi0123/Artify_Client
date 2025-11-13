@@ -3,6 +3,8 @@ import { useLoaderData } from "react-router";
 import { useAxios } from "../../hooks/useAxios";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
+import { FaHeart } from "react-icons/fa"; // Like icon
+import { FaStar } from "react-icons/fa";  // Favorite icon
 
 const Viewdetails = () => {
   const art = useLoaderData();
@@ -46,7 +48,7 @@ const Viewdetails = () => {
           artworkId: art._id,
           title: art.title,
           imageUrl: art.imageUrl,
-          createdAt:art.date
+          createdAt: art.date,
         });
       } else {
         await axiosPublic.delete(`favorites/${art._id}`);
@@ -60,12 +62,21 @@ const Viewdetails = () => {
   return (
     <div className="card bg-base-100 dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden p-6 mt-6 max-w-4xl mx-auto">
       {/* Artwork Image */}
-      <div className="w-full h-80 sm:h-96 lg:h-[500px] overflow-hidden rounded-xl">
+      <div className="relative w-full h-80 sm:h-96 lg:h-[500px] overflow-hidden rounded-xl">
         <img
           src={art.imageUrl}
           alt={art.title}
-          className="w-full h-full object-cover  transform group-hover:scale-110 transition-transform duration-500 ease-out"
+          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 ease-out"
         />
+        {/* Category Badge */}
+        <span className="absolute top-4 left-4 bg-[#137A63] text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
+          {art.category}
+        </span>
+        {/* Likes Count */}
+        <div className="absolute top-4 right-4 flex items-center gap-1 bg-white/80 dark:bg-gray-800/80 px-2 py-1 rounded-full text-xs font-medium text-gray-800 dark:text-gray-200 shadow">
+          <FaHeart className="text-red-500" />
+          {likes}
+        </div>
       </div>
 
       {/* Artwork Info */}
@@ -105,20 +116,15 @@ const Viewdetails = () => {
         {/* Buttons */}
         <div className="flex flex-wrap gap-3 mt-6">
           {/* ❤️ Like Button */}
-          {/* ❤️ Like Button */}
           <button
             onClick={handleLike}
             data-tooltip-id="like-tooltip"
-            data-tooltip-content={`Click to ${
-              liked ? "unlike" : "like"
-            } this artwork`}
+            data-tooltip-content={`Click to ${liked ? "unlike" : "like"} this artwork`}
             className={`flex-1 sm:flex-none ${
-              liked
-                ? "bg-red-500 hover:bg-red-600"
-                : "bg-[#137A63] hover:bg-[#0f5d4c]"
+              liked ? "bg-red-500 hover:bg-red-600" : "bg-[#137A63] hover:bg-[#0f5d4c]"
             } text-white font-semibold py-2 px-4 rounded-full transition duration-300 shadow-md flex items-center justify-center gap-2`}
           >
-            ❤️ {liked ? "Liked" : "Like"} ({likes})
+            <FaHeart /> {liked ? "Liked" : "Like"} ({likes})
           </button>
           <ReactTooltip id="like-tooltip" place="top" effect="solid" />
 
@@ -126,16 +132,14 @@ const Viewdetails = () => {
           <button
             onClick={handleFavorite}
             data-tooltip-id="fav-tooltip"
-            data-tooltip-content={
-              favorite ? "Remove from favorites" : "Add to favorites"
-            }
+            data-tooltip-content={favorite ? "Remove from favorites" : "Add to favorites"}
             className={`flex-1 sm:flex-none font-semibold py-2 px-4 rounded-full transition duration-300 shadow-md flex items-center justify-center gap-2 ${
               favorite
                 ? "bg-pink-500 text-white hover:bg-pink-600 shadow-lg"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
             }`}
           >
-            {favorite ? "★ Favorited" : "☆ Add to Favorites"}
+            <FaStar /> {favorite ? "Favorited" : "Add to Favorites"}
           </button>
           <ReactTooltip id="fav-tooltip" place="top" effect="solid" />
         </div>

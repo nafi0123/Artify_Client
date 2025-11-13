@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAxios } from "../../hooks/useAxios";
-import { FaTrashAlt } from "react-icons/fa";
+import { FaHeartBroken } from "react-icons/fa";
 import Loading from "../../components/Loading/Loading";
 
 const MyFavorites = () => {
@@ -8,6 +8,7 @@ const MyFavorites = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetch favorites
   useEffect(() => {
     publicAxios
       .get("favorites")
@@ -22,7 +23,8 @@ const MyFavorites = () => {
       });
   }, [publicAxios]);
 
-  const handleDelete = (id) => {
+  // Handle Unfavorite
+  const handleUnfavorite = (id) => {
     setLoading(true);
     publicAxios
       .delete(`my-favorites/${id}`)
@@ -30,7 +32,7 @@ const MyFavorites = () => {
         setData(res.data);
       })
       .catch((err) => {
-        console.error("Failed to delete:", err);
+        console.error("Failed to unfavorite:", err);
       })
       .finally(() => {
         setLoading(false);
@@ -38,15 +40,15 @@ const MyFavorites = () => {
   };
 
   if (loading) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
 
   return (
     <div className="pt-20 px-4 sm:px-6 lg:px-8 min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Title/Header */}
       <div className="mb-8 text-center">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3">
-          My Favorites <span className="text-[#137A63]">Artworks</span>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3">
+          My <span className="text-[#137A63]">Favorites</span>
         </h1>
         <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto text-center mb-6 dark:text-gray-300">
           Explore and revisit artworks you love. Keep track of your favorite
@@ -107,10 +109,10 @@ const MyFavorites = () => {
                   <td className="px-4 py-3 text-center">
                     <div className="flex justify-center items-center gap-2">
                       <button
-                        onClick={() => handleDelete(art._id)}
-                        className="inline-flex items-center gap-1 text-red-600 hover:text-red-800 px-3 py-1 rounded-md border border-red-600 hover:border-red-800 transition"
+                        onClick={() => handleUnfavorite(art._id)}
+                        className="inline-flex items-center gap-1 text-[#137A63] hover:text-[#0f5c4c] px-3 py-1 rounded-md border border-[#137A63] hover:border-[#0f5c4c] transition transform hover:scale-105 hover:animate-pulse"
                       >
-                        <FaTrashAlt /> Delete
+                        <FaHeartBroken className="text-red-500" /> Unfavorite
                       </button>
                     </div>
                   </td>

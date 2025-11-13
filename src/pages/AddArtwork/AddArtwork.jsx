@@ -27,17 +27,12 @@ const AddArtwork = () => {
     },
   });
 
-  // Centralized change handler
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     if (name === "totalArtworks") {
       setFormData((prev) => ({
         ...prev,
-        artistInfo: {
-          ...prev.artistInfo,
-          totalArtworks: value,
-        },
+        artistInfo: { ...prev.artistInfo, totalArtworks: value },
       }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
@@ -63,10 +58,7 @@ const AddArtwork = () => {
         visibility: "Public",
         likes: 0,
         date: new Date().toISOString().split("T")[0],
-        artistInfo: {
-          ...prev.artistInfo,
-          totalArtworks: "",
-        },
+        artistInfo: { ...prev.artistInfo, totalArtworks: "" },
       }));
     } catch (err) {
       console.error("Failed to add artwork:", err);
@@ -75,10 +67,10 @@ const AddArtwork = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md mt-8">
+    <div className="max-w-3xl mx-auto p-6 rounded-lg shadow-md mt-8 bg-white dark:bg-gray-900">
       <Toaster position="top-center" reverseOrder={false} />
 
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 text-center">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3 text-center">
         Add New <span className="text-[#137A63]">Artworks</span>
       </h1>
       <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto text-center mb-10 dark:text-gray-300">
@@ -93,7 +85,7 @@ const AddArtwork = () => {
           placeholder="Image URL"
           value={formData.imageUrl}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           required
         />
         <input
@@ -102,7 +94,7 @@ const AddArtwork = () => {
           placeholder="Title"
           value={formData.title}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           required
         />
         <input
@@ -111,7 +103,7 @@ const AddArtwork = () => {
           placeholder="Category"
           value={formData.category}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           required
         />
         <input
@@ -120,7 +112,7 @@ const AddArtwork = () => {
           placeholder="Medium"
           value={formData.medium}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           required
         />
         <textarea
@@ -128,7 +120,7 @@ const AddArtwork = () => {
           placeholder="Description"
           value={formData.description}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           required
         />
         <input
@@ -137,7 +129,7 @@ const AddArtwork = () => {
           placeholder="Dimensions"
           value={formData.dimensions}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           required
         />
         <input
@@ -146,14 +138,14 @@ const AddArtwork = () => {
           placeholder="Price"
           value={formData.price}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           required
         />
         <select
           name="visibility"
           value={formData.visibility}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           required
         >
           <option value="Public">Public</option>
@@ -167,7 +159,7 @@ const AddArtwork = () => {
           placeholder="Artist Name"
           value={formData.artistInfo.name}
           readOnly
-          className="w-full p-2 border rounded bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200"
+          className="w-full p-2 border rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200"
         />
         <input
           type="text"
@@ -175,18 +167,18 @@ const AddArtwork = () => {
           placeholder="Artist Photo URL"
           value={formData.artistInfo.photo}
           readOnly
-          className="w-full p-2 border rounded bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200"
+          className="w-full p-2 border rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200"
         />
 
-        {/* Total artworks input (editable) */}
+        {/* Total artworks input */}
         <input
           type="number"
-          required
           name="totalArtworks"
           placeholder="Total Artworks"
           value={formData.artistInfo.totalArtworks}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+          required
         />
 
         <button

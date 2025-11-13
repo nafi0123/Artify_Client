@@ -19,7 +19,7 @@ const Root = () => {
         {state == "loading" ? <Loading></Loading> : <Outlet></Outlet>}
       
       </main>
-      <footer className="py-4">
+      <footer className="">
         <Footer></Footer>
       </footer>
     </div>

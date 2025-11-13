@@ -11,10 +11,12 @@ import AddArtwork from "../pages/AddArtwork/AddArtwork";
 import MyGallery from "../pages/MyGallery/MyGallery";
 import ExploreArtworks from "../pages/ExploreArtworks/ExploreArtworks";
 import PrivetProvider from "../provider/PrivetProvider";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
     Component: Root,
+    errorElement:<ErrorPage></ErrorPage>,
     children: [
       { index: true, Component: Home },
       {
@@ -75,6 +77,9 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    
+  }
 ]);
 
 export default router;

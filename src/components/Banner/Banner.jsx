@@ -6,8 +6,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 const Banner = () => {
-  //
-
   const slides = [
     {
       id: 1,
@@ -33,44 +31,6 @@ const Banner = () => {
   ];
 
   return (
-    //  className="relative w-full overflow-hidden rounded-2xl"
-    // <section className="w-full h-[80vh] md:h-[90vh] mt-2 overflow-hidden">
-    //   <Swiper
-    //     spaceBetween={30}
-    //     centeredSlides={true}
-    //     autoplay={{
-    //       delay: 4000,
-    //       disableOnInteraction: false,
-    //     }}
-    //     pagination={{
-    //       clickable: true,
-    //     }}
-    //     navigation={true}
-    //     modules={[Autoplay, Pagination, Navigation]}
-    //     className="h-full w-full rounded-xl shadow-lg"
-    //   >
-    //     {slides.map((slide) => (
-    //       <SwiperSlide key={slide.id}>
-    //         <div
-    //           className="h-full bg-cover bg-center flex flex-col justify-center items-center text-white"
-    //           style={{
-    //             backgroundImage: `url(${slide.img})`,
-    //           }}
-    //         >
-    //           <div className="bg-black/50 p-6 rounded-xl text-center max-w-2xl">
-    //             <h2 className="text-4xl md:text-6xl font-bold mb-4">
-    //               {slide.title}
-    //             </h2>
-    //             <p className="text-lg mb-4">{slide.desc}</p>
-    //             <button className="bg-[#137A63] hover:bg-[#0f5d4c] text-white font-semibold px-6 py-3 rounded-full transition duration-300">
-    //               {slide.button}
-    //             </button>
-    //           </div>
-    //         </div>
-    //       </SwiperSlide>
-    //     ))}
-    //   </Swiper>
-    // </section>
     <section className="w-full mt-2 overflow-hidden">
       <Swiper
         spaceBetween={30}
@@ -89,24 +49,27 @@ const Banner = () => {
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <div
-              className="relative w-full flex justify-center items-center"
+              className="relative w-full"
               style={{
-                paddingTop: "56.25%", // 16:9 ratio, responsive height
+                paddingTop: "56.25%", // 16:9 ratio
                 backgroundImage: `url(${slide.img})`,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
               }}
             >
-              <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center p-6 text-center rounded-xl">
-                <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">
-                  {slide.title}
-                </h2>
-                <p className="text-md md:text-lg mb-4 text-white">
-                  {slide.desc}
-                </p>
-                <button className="bg-[#137A63] hover:bg-[#0f5d4c] text-white font-semibold px-6 py-3 rounded-full transition duration-300">
-                  {slide.button}
-                </button>
+              {/* Overlay */}
+              <div className="absolute inset-0 flex justify-center items-center">
+                <div className="bg-black/50 p-4 sm:p-6 md:p-8 lg:p-10 rounded-xl text-center w-full max-w-3xl mx-4">
+                  <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 text-white">
+                    {slide.title}
+                  </h2>
+                  <p className="text-sm sm:text-md md:text-lg mb-4 text-white leading-relaxed">
+                    {slide.desc}
+                  </p>
+                  <button className="bg-[#137A63] hover:bg-[#0f5d4c] text-white font-semibold px-6 py-3 rounded-full transition duration-300">
+                    {slide.button}
+                  </button>
+                </div>
               </div>
             </div>
           </SwiperSlide>

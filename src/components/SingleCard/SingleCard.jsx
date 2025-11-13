@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
+import { FaHeart } from "react-icons/fa"; // For likes icon
 
 const SingleCard = ({ art, aos }) => {
   return (
@@ -24,6 +25,12 @@ const SingleCard = ({ art, aos }) => {
         <span className="absolute top-3 left-3 bg-[#137A63] text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
           {art.category}
         </span>
+        {art.likes !== undefined && (
+          <div className="absolute top-3 right-3 flex items-center gap-1 bg-white/80 dark:bg-gray-800/80 px-2 py-1 rounded-full text-xs font-medium text-gray-800 dark:text-gray-200 shadow">
+            <FaHeart className="text-red-500" />
+            {art.likes}
+          </div>
+        )}
       </div>
 
       {/* Artwork Content */}
@@ -35,9 +42,7 @@ const SingleCard = ({ art, aos }) => {
 
           <div className="text-gray-700 dark:text-gray-300 text-sm mt-1">
             <p className="font-medium">{art.userName}</p>
-            <p className="text-gray-500 dark:text-gray-400 text-xs">
-              {art.medium}
-            </p>
+            <p className="text-gray-500 dark:text-gray-400 text-xs">{art.medium}</p>
           </div>
 
           <div className="text-gray-800 dark:text-gray-200 font-semibold mt-2">
