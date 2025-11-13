@@ -97,7 +97,7 @@ const ExploreArtworks = () => {
       ) : (
         <div
           data-aos="fade-up"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-5"
         >
           {filteredData.map((art) => (
             <SingleCard key={art._id} art={art} />
