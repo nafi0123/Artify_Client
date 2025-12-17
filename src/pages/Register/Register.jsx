@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const { createUser, googleSignIn, updateUserProfile } = useAuth();
+  const { createUser, googleSignIn, updateUser } = useAuth();
   const navigate = useNavigate();
 
   const [error, setError] = useState("");
@@ -29,7 +29,7 @@ const Register = () => {
     }
 
     createUser(email, password)
-      .then(() => updateUserProfile(name, photo))
+      .then(() => updateUser(name, photo))
       .then(() => {
         toast.success("Account created successfully!");
         navigate("/");
