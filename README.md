@@ -6,7 +6,7 @@ Artify is an interactive online platform where artists can upload, showcase, and
 ---
 
 ## 🌐 Live Website
-[https://fir-1d10b.web.app/](https://fir-1d10b.web.app/)
+[https://artify-smoky-nu.vercel.app/](https://artify-smoky-nu.vercel.app/)
 
 ---
 ## 🔹 Key Features
