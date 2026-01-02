@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useAxios } from "../../hooks/useAxios";
+import { useAxios } from "../../../hooks/useAxios";
 import { FaHeartBroken } from "react-icons/fa";
-import Loading from "../../components/Loading/Loading";
+import Loading from "../../../components/Loading/Loading";
 
 const MyFavorites = () => {
   const publicAxios = useAxios();

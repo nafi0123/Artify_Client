@@ -8,6 +8,8 @@ import {
   FaHeart,
   FaUserCircle,
   FaTimes,
+  FaInfoCircle,
+  FaTachometerAlt,
 } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 
@@ -43,19 +45,20 @@ const Navbar = () => {
         <FaImages /> Explore Artworks
       </NavLink>
 
+      <NavLink to="/about-us" className={navItemStyle}>
+      <FaInfoCircle /> About Us
+    </NavLink>
+      
+    
+
       {user && (
         <>
-          <NavLink to="/add-artwork" className={navItemStyle}>
-            <FaPlusCircle /> Add Artwork
-          </NavLink>
+        <NavLink to="/dashboard" className={navItemStyle}>
+          <FaTachometerAlt /> Dashboard
+        </NavLink>
 
-          <NavLink to="/my-gallery" className={navItemStyle}>
-            <FaUserCircle /> My Gallery
-          </NavLink>
 
-          <NavLink to="/favorites" className={navItemStyle}>
-            <FaHeart /> My Favorites
-          </NavLink>
+          
         </>
       )}
     </>
@@ -64,7 +67,7 @@ const Navbar = () => {
   return (
     <>
       {/* Top Navbar */}
-      <div className="navbar bg-white dark:bg-[#0d0d0d] shadow-sm sticky top-0 z-50 px-4 flex justify-between items-center">
+      <div className="navbar bg-white dark:bg-[#0d0d0d] shadow-sm  px-4 flex justify-between items-center">
         {/* Left */}
         <div className="flex items-center gap-3">
           <button

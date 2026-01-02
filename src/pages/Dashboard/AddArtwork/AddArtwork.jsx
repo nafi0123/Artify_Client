@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useAxios } from "../../hooks/useAxios";
-import useAuth from "../../hooks/useAuth";
+import { useAxios } from "../../../hooks/useAxios";
+import useAuth from "../../../hooks/useAuth";
 import toast, { Toaster } from "react-hot-toast";
 
 const AddArtwork = () => {

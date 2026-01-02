@@ -6,17 +6,20 @@ import Login from "../pages/Login/Login";
 import ForgotPass from "../pages/ForgotPass/ForgotPass";
 import Viewdetails from "../pages/Viewdetails/Viewdetails";
 import Loading from "../components/Loading/Loading";
-import MyFavorites from "../pages/MyFavorites/MyFavorites";
-import AddArtwork from "../pages/AddArtwork/AddArtwork";
-import MyGallery from "../pages/MyGallery/MyGallery";
+
 import ExploreArtworks from "../pages/ExploreArtworks/ExploreArtworks";
 import PrivetProvider from "../provider/PrivetProvider";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import AboutUs from "../pages/AboutUs/AboutUs";
+import AddArtwork from "../pages/Dashboard/AddArtwork/AddArtwork";
+import MyGallery from "../pages/Dashboard/MyGallery/MyGallery";
+import MyFavorites from "../pages/Dashboard/MyFavorites/MyFavorites";
+import DashboardLayout from "../layouts/DashboardLayout";
 const router = createBrowserRouter([
   {
     path: "/",
     Component: Root,
-    errorElement:<ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       { index: true, Component: Home },
       {
@@ -37,49 +40,52 @@ const router = createBrowserRouter([
           fetch(
             `https://artify-api-amber.vercel.app/artwork-details/${params.id}`
           ),
-        element:(
-          <PrivetProvider>
+        element: (
+         
             <Viewdetails></Viewdetails>
-          </PrivetProvider>
+          
         ),
         hydrateFallbackElement: <Loading></Loading>,
       },
-      {
-        path: "/favorites",
 
-          element:(
-          <PrivetProvider>
-            <MyFavorites></MyFavorites>
-          </PrivetProvider>
-        )
-        // Component: MyFavorites,
-      },
-      {
-        path: "/add-artwork",
-        element:(
-          <PrivetProvider>
-            <AddArtwork></AddArtwork>
-          </PrivetProvider>
-        )
-        // Component: AddArtwork,
-      },
-      {
-        path: "/my-gallery",
-        element:(
-          <PrivetProvider>
-           <MyGallery></MyGallery>
-          </PrivetProvider>
-        )
-      },
       {
         path: "/explore-artworks",
         Component: ExploreArtworks,
       },
+      {
+        path: "/about-us",
+        Component: AboutUs,
+      },
     ],
   },
+
   {
-    
-  }
+    path: "/dashboard",
+
+    element: (
+      <PrivetProvider>
+        <DashboardLayout />
+      </PrivetProvider>
+    ),
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
+      {
+        path: "favorites",
+
+        element: <MyFavorites></MyFavorites>,
+        // Component: MyFavorites,
+      },
+      {
+        path: "add-artwork",
+        element: <AddArtwork></AddArtwork>,
+        // Component: AddArtwork,
+      },
+      {
+        path: "my-gallery",
+        element: <MyGallery></MyGallery>,
+      },
+    ],
+  },
 ]);
 
 export default router;

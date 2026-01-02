@@ -35,50 +35,48 @@ const Banner = () => {
   ];
 
   return (
-    <section className="w-full mt-2 overflow-hidden">
+    <section className="w-full overflow-hidden">
       <Swiper
         spaceBetween={30}
-        centeredSlides={true}
-        autoplay={{
-          delay: 4000,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
+        centeredSlides
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
+        pagination={{ clickable: true }}
+        navigation
         modules={[Autoplay, Pagination, Navigation]}
         className="w-full"
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div
-              className="relative w-full"
-              style={{
-                paddingTop: "56.25%", // 16:9 ratio
-                backgroundImage: `url(${slide.img})`,
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-              }}
-            >
-              {/* Overlay */}
-              <div className="absolute inset-0 flex justify-center items-center">
-                <div className="bg-black/50 p-4 sm:p-6 md:p-8 lg:p-10 rounded-xl text-center w-full max-w-3xl mx-4">
-                  <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 text-white">
-                    {slide.title}
-                  </h2>
-                  <p className="text-sm sm:text-md md:text-lg mb-4 text-white leading-relaxed">
-                    {slide.desc}
-                  </p>
+            <div className="relative w-full h-[60vh] md:h-[65vh] lg:h-[70vh]">
 
-                  {/* Linked button */}
-                  <Link
-                    to={slide.link}
-                    className="inline-block bg-[#137A63] hover:bg-[#0f5d4c] text-white font-semibold px-6 py-3 rounded-full transition duration-300"
-                  >
-                    {slide.button}
-                  </Link>
-                </div>
+              {/* ✅ Image with object-cover */}
+              <img
+                src={slide.img}
+                alt={slide.title}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black/50"></div>
+
+              {/* Content */}
+              <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 max-w-3xl mx-auto">
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 text-white">
+                  {slide.title}
+                </h2>
+
+                <p className="text-sm sm:text-base md:text-lg mb-6 text-white leading-relaxed">
+                  {slide.desc}
+                </p>
+
+                <Link
+                  to={slide.link}
+                  className="inline-block bg-[#137A63] hover:bg-[#0f5d4c]
+                             text-white font-semibold px-6 py-3
+                             rounded-full transition duration-300"
+                >
+                  {slide.button}
+                </Link>
               </div>
             </div>
           </SwiperSlide>

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useAxios } from "../../hooks/useAxios";
-import useAuth from "../../hooks/useAuth";
+import { useAxios } from "../../../hooks/useAxios";
+import useAuth from "../../../hooks/useAuth";
 import { Toaster } from "react-hot-toast";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
-import Loading from "../../components/Loading/Loading";
+import Loading from "../../../components/Loading/Loading";
 
 
 const getSwalTheme = (theme) => {

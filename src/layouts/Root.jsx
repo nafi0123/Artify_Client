@@ -10,7 +10,7 @@ const Root = () => {
     // bg-[#fdfaf6]
     // dark:bg-black dark:text-white bg-white
     <div className="min-h-screen bg-[#fdfaf6]  dark:bg-gray-900 text-gray-900">
-      <header className="">
+      <header className="sticky top-0 z-50">
         <Navbar></Navbar>
       </header>
 
