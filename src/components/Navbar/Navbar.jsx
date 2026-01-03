@@ -55,7 +55,7 @@ const Navbar = () => {
           <NavLink to="/profile" className={navItemStyle}>
             <FaRegUserCircle /> My Profile
           </NavLink>
-          <NavLink to="/dashboard" className={navItemStyle}>
+          <NavLink to="/dashboard/artworks-stats" className={navItemStyle}>
             <FaTachometerAlt /> Dashboard
           </NavLink>
         </>

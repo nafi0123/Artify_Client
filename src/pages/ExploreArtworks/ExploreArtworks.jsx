@@ -11,15 +11,15 @@ const ExploreArtworks = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [searchInput, setSearchInput] = useState(""); 
+  const [searchInput, setSearchInput] = useState("");
   const [search, setSearch] = useState("");
 
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [sortBy, setSortBy] = useState(""); 
+  const [sortBy, setSortBy] = useState("");
 
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const limit = 8; 
+  const limit = 8;
 
   // Fetch artworks
   useEffect(() => {
@@ -44,10 +44,9 @@ const ExploreArtworks = () => {
     AOS.init({ duration: 1000, once: false, offset: 120 });
   }, []);
 
-  // Form submit
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    setPage(1); // reset page
+    setPage(1);
     setSearch(searchInput);
   };
 
@@ -60,16 +59,14 @@ const ExploreArtworks = () => {
         🎨 Explore <span className="text-[#137A63]">Artworks</span>
       </h1>
       <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base max-w-2xl mx-auto text-center mb-6">
-        Discover stunning paintings, digital masterpieces, and unique expressions by talented artists worldwide.
+        Discover stunning paintings, digital masterpieces, and unique
+        expressions by talented artists worldwide.
       </p>
 
       {/* Search & Filters */}
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
         {/* Search Form */}
-        <form
-          onSubmit={handleSearchSubmit}
-          className="flex w-full max-w-md"
-        >
+        <form onSubmit={handleSearchSubmit} className="flex w-full max-w-md">
           <input
             type="text"
             value={searchInput}
@@ -85,7 +82,6 @@ const ExploreArtworks = () => {
           </button>
         </form>
 
-   
         <div className="flex gap-2 flex-wrap justify-center">
           {["All", "Painting", "Photography", "Digital Art", "Others"].map(
             (cat) => (
@@ -107,14 +103,13 @@ const ExploreArtworks = () => {
           )}
         </div>
 
-        {/* Sort Option */}
         <select
           value={sortBy}
           onChange={(e) => {
             setSortBy(e.target.value);
             setPage(1);
           }}
-          className="px-3 py-2 border rounded-full dark:bg-gray-800 dark:text-white"
+          className="px-4 py-2 rounded-full border transition-all duration-300 border-gray-400 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
         >
           <option value="">Sort By</option>
           <option value="priceAsc">Price: Low → High</option>

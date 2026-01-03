@@ -6,28 +6,15 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 
-/* @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *)); */
-
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
-
-/* index.css */
-/* @import url("@fontsource/poppins"); 
-@import url("@fontsource/poppins/700.css"); 
-
-body {
-  font-family: "Poppins", sans-serif;
-} */
 
 
 [data-theme=dark] {
-  color: white; /* default text color in dark theme */
-  background-color: black; /* optional, just to ensure background */
+  color: white; 
+  background-color: black;
 }
 
 [data-theme=dark] * {
-  color: inherit; /* all children inherit white text */
+  color: inherit; 
 }
 @keyframes gradient-x {
   0%, 100% { background-position: 0% 50%; }
