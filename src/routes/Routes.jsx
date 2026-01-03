@@ -15,6 +15,7 @@ import AddArtwork from "../pages/Dashboard/AddArtwork/AddArtwork";
 import MyGallery from "../pages/Dashboard/MyGallery/MyGallery";
 import MyFavorites from "../pages/Dashboard/MyFavorites/MyFavorites";
 import DashboardLayout from "../layouts/DashboardLayout";
+import MyProfile from "../pages/SharedPages/MyProfile/MyProfile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
         path: "/about-us",
         Component: AboutUs,
       },
+      {
+        path: "profile",
+        element: <MyProfile></MyProfile>,
+      },
     ],
   },
 
@@ -83,6 +88,10 @@ const router = createBrowserRouter([
       {
         path: "my-gallery",
         element: <MyGallery></MyGallery>,
+      },
+      {
+        path: "profile",
+        element: <MyProfile></MyProfile>,
       },
     ],
   },

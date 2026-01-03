@@ -10,6 +10,7 @@ import {
   FaTimes,
   FaInfoCircle,
   FaTachometerAlt,
+  FaRegUserCircle,
 } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 
@@ -46,19 +47,17 @@ const Navbar = () => {
       </NavLink>
 
       <NavLink to="/about-us" className={navItemStyle}>
-      <FaInfoCircle /> About Us
-    </NavLink>
-      
-    
+        <FaInfoCircle /> About Us
+      </NavLink>
 
       {user && (
         <>
-        <NavLink to="/dashboard" className={navItemStyle}>
-          <FaTachometerAlt /> Dashboard
-        </NavLink>
-
-
-          
+          <NavLink to="/profile" className={navItemStyle}>
+            <FaRegUserCircle /> My Profile
+          </NavLink>
+          <NavLink to="/dashboard" className={navItemStyle}>
+            <FaTachometerAlt /> Dashboard
+          </NavLink>
         </>
       )}
     </>

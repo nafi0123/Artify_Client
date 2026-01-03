@@ -15,7 +15,7 @@ const Root = () => {
       </header>
 
       {/* className="w-11/12 mx-auto py-5" */}
-      <main >
+      <main className="my-3">
         {state == "loading" ? <Loading></Loading> : <Outlet></Outlet>}
       
       </main>

@@ -5,7 +5,7 @@ import { FaFacebook, FaInstagram, FaYoutube, FaEnvelope, FaPhone } from "react-i
 const Footer = () => {
   return (
     <footer className="bg-[#0F3D36] text-white py-10 px-6">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
+      <div className="w-11/12 mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
         
         {/* ===== Left: Logo & Brand ===== */}
         <div className="flex flex-col items-start">

@@ -50,6 +50,7 @@ const AuthProvider = ({ children }) => {
     return sendPasswordResetEmail(auth, email);
   };
 
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -69,6 +70,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     googleSignIn,
     resetPassword,
+   
   };
 
   return (

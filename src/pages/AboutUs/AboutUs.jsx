@@ -18,7 +18,7 @@ const AboutUs = () => {
       </div>
 
       {/* ===== Mission & Vision ===== */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
         <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-lg transition">
           <h3 className="text-xl font-semibold text-[#137A63] mb-3">
             Our Mission
@@ -43,7 +43,7 @@ const AboutUs = () => {
       </div>
 
       {/* ===== Core Values ===== */}
-      <div className="max-w-6xl mx-auto mb-20">
+      <div className="w-11/12 mx-auto mb-20">
         <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 dark:text-white mb-10">
           What We Believe In
         </h2>

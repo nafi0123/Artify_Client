@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
-import { FaHeart } from "react-icons/fa"; // For likes icon
+import { FaHeart } from "react-icons/fa";
 
 const SingleCard = ({ art, aos }) => {
   return (
@@ -10,7 +10,7 @@ const SingleCard = ({ art, aos }) => {
                  hover:shadow-2xl hover:-translate-y-1 hover:bg-[#e6f4f1] 
                  dark:hover:bg-[#102923] dark:hover:opacity-95 
                  transition-all duration-300 ease-in-out 
-                 w-full sm:w-[300px] md:w-[320px] lg:w-[350px] mx-auto
+                 w-full max-w-[350px] mx-auto
                  flex flex-col justify-between"
       data-aos={aos}
     >

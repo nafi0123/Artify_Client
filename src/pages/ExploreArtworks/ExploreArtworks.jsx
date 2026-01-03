@@ -30,7 +30,7 @@ const ExploreArtworks = () => {
   if (loading) return <Loading />;
 
   return (
-    <div className="pt-20 px-4 sm:px-6 lg:px-8 min-h-screen max-w-6xl mx-auto">
+    <div className="pt-20 px-4 sm:px-6 lg:px-8 min-h-screen w-11/12 mx-auto">
       {/* Page Title */}
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3 text-center">
         🎨 Explore <span className="text-[#137A63]">Artworks</span>
@@ -97,7 +97,7 @@ const ExploreArtworks = () => {
       ) : (
         <div
           data-aos="fade-up"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-5"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
         >
           {filteredData.map((art) => (
             <SingleCard key={art._id} art={art} />

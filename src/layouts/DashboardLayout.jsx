@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useNavigation } from "react-router";
 import Loading from "../components/Loading/Loading";
-import { FaHeart, FaPlusCircle, FaUserCircle, FaBars } from "react-icons/fa";
+import { FaHeart, FaPlusCircle, FaUserCircle, FaBars, FaRegUserCircle } from "react-icons/fa";
 import Logo from "../assets/logo1.jpg";
 import useAuth from "../hooks/useAuth";
 
@@ -108,6 +108,9 @@ const DashboardLayout = () => {
 
           {/* Sidebar Menu */}
           <ul className="menu p-4 flex-1 space-y-2">
+            <NavLink to="/dashboard/profile" className={navItemStyle}>
+              <FaRegUserCircle /> My Profile
+            </NavLink>
             <NavLink to="/dashboard/add-artwork" className={navItemStyle}>
               <FaPlusCircle /> Add Artwork
             </NavLink>
