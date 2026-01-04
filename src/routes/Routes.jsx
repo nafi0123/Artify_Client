@@ -42,11 +42,7 @@ const router = createBrowserRouter([
           fetch(
             `https://artify-api-amber.vercel.app/artwork-details/${params.id}`
           ),
-        element: (
-         
-            <Viewdetails></Viewdetails>
-          
-        ),
+        element: <Viewdetails></Viewdetails>,
         hydrateFallbackElement: <Loading></Loading>,
       },
 
@@ -60,13 +56,17 @@ const router = createBrowserRouter([
       },
       {
         path: "profile",
-        element: <MyProfile></MyProfile>,
+        element: (
+          <PrivetProvider>
+            <MyProfile></MyProfile>
+          </PrivetProvider>
+        ),
       },
     ],
   },
 
   {
-    path: "/dashboard",
+    path: "dashboard",
 
     element: (
       <PrivetProvider>
@@ -79,12 +79,12 @@ const router = createBrowserRouter([
         path: "favorites",
 
         element: <MyFavorites></MyFavorites>,
-        // Component: MyFavorites,
+      
       },
       {
         path: "add-artwork",
         element: <AddArtwork></AddArtwork>,
-        // Component: AddArtwork,
+       
       },
       {
         path: "my-gallery",
@@ -98,8 +98,8 @@ const router = createBrowserRouter([
         path: "artworks-stats",
 
         element: <DashboardChart></DashboardChart>,
-        // Component: MyFavorites,
-      }
+     
+      },
     ],
   },
 ]);
