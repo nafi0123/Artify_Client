@@ -49,7 +49,7 @@ const MyGallery = () => {
       .finally(() => setLoading(false));
   }, [publicAxios, user]);
 
-  // ✅ DELETE Handler
+
   const handleDelete = (id) => {
     const themeColors = getSwalTheme(theme);
 
